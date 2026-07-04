@@ -1,0 +1,9 @@
+{
+  "name": "alpha-squad-ff-tournament",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing de inscripcion a torneo Free Fire con verificacion de pagos por IA",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}
