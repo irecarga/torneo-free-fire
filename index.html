@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ALPHA SQUAD // Torneo Free Fire — Inscripción</title>
+<meta name="description" content="Inscripción oficial al torneo Free Fire. Registro, verificación de pago y confirmación automática." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#0B0E13',
+          panel: '#12161D',
+          panel2: '#1A1F29',
+          line: '#232A36',
+          flame: '#FF5A1F',
+          flame2: '#FF8A3D',
+          hud: '#00D9FF',
+          gold: '#FFD23F',
+          danger: '#FF3B5C',
+        },
+        fontFamily: {
+          display: ['Orbitron', 'sans-serif'],
+          tactical: ['Rajdhani', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+        boxShadow: {
+          flame: '0 0 25px rgba(255,90,31,0.35)',
+          hud: '0 0 20px rgba(0,217,255,0.25)',
+        },
+      },
+    },
+  };
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  body { background-color: #0B0E13; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0,217,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,217,255,0.05) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+  .scanline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(255,255,255,0.015) 3px
+    );
+    pointer-events: none;
+  }
+  .corner-frame { position: relative; }
+  .corner-frame::before,
+  .corner-frame::after,
+  .corner-frame span::before,
+  .corner-frame span::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: #FF5A1F;
+    opacity: 0.9;
+  }
+  .corner-frame::before { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; }
+  .corner-frame::after { top: -1px; right: -1px; border-top: 2px solid; border-right: 2px solid; }
+  .corner-frame span::before { bottom: -1px; left: -1px; border-bottom: 2px solid; border-left: 2px solid; }
+  .corner-frame span::after { bottom: -1px; right: -1px; border-bottom: 2px solid; border-right: 2px solid; }
+  @keyframes radarSweep {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .radar-sweep {
+    animation: radarSweep 3s linear infinite;
+    transform-origin: center;
+  }
+  @keyframes pulseFlame {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,90,31,0.45); }
+    50% { box-shadow: 0 0 0 8px rgba(255,90,31,0); }
+  }
+  .pulse-dot { animation: pulseFlame 1.8s ease-in-out infinite; }
+  input:focus, select:focus { outline: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .radar-sweep, .pulse-dot { animation: none; }
+  }
+</style>
+</head>
+
+<body class="font-body text-slate-200 grid-bg min-h-screen relative overflow-x-hidden">
+
+  <header class="border-b border-line/80 bg-void/80 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-flame pulse-dot"></span>
+        <span class="font-tactical tracking-[0.2em] text-xs text-slate-400">TERMINAL DE ENLISTAMIENTO — EN LÍNEA</span>
+      </div>
+      <span class="font-tactical text-xs text-hud tracking-widest hidden sm:inline">SERVIDOR: LATAM</span>
+    </div>
+  </header>
+
+  <section class="relative max-w-6xl mx-auto px-5 pt-16 pb-14">
+    <div class="flex flex-col items-start gap-6">
+      <div class="flex items-center gap-3 border border-flame/40 bg-flame/5 px-3 py-1 rounded-sm">
+        <span class="w-1.5 h-1.5 bg-flame rounded-full"></span>
+        <span class="font-tactical text-xs tracking-[0.25em] text-flame2">MISIÓN ACTIVA · CUPOS LIMITADOS</span>
+      </div>
+
+      <h1 class="font-display font-900 text-4xl sm:text-6xl leading-[1.05] text-white uppercase">
+        ALPHA <span class="text-flame">SQUAD</span><br/>
+        <span class="text-hud">TORNEO</span> FREE FIRE
+      </h1>
+
+      <p class="font-tactical text-lg text-slate-400 max-w-xl">
+        Regístrate, sube tu comprobante de pago y nuestro sistema de IA lo valida
+        automáticamente. Sin filas de WhatsApp, sin esperas manuales.
+      </p>
+
+      <div class="flex flex-wrap gap-3 pt-2">
+        <a href="#inscripcion" class="font-tactical font-700 tracking-wide bg-flame hover:bg-flame2 text-void px-6 py-3 rounded-sm shadow-flame transition uppercase text-sm">
+          Enlistarme ahora
+        </a>
+        <a href="#reglas" class="font-tactical font-600 tracking-wide border border-line hover:border-hud/60 text-slate-300 px-6 py-3 rounded-sm transition uppercase text-sm">
+          Ver reglas
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-3 sm:gap-4 mt-12 max-w-2xl">
+      <div class="corner-frame border border-line bg-panel/60 px-4 py-3"><span></span>
+        <p class="font-display text-2xl text-hud">$5.00</p>
+        <p class="font-tactical text-[11px] tracking-widest text-slate-500 uppercase">Cupo por escuadrón</p>
+      </div>
+      <div class="corner-frame border border-line bg-panel/60 px-4 py-3"><span></span>
+        <p class="font-display text-2xl text-hud">48</p>
+        <p class="font-tactical text-[11px] tracking-widest text-slate-500 uppercase">Squads máx.</p>
+      </div>
+      <div class="corner-frame border border-line bg-panel/60 px-4 py-3"><span></span>
+        <p class="font-display text-2xl text-hud">Auto</p>
+        <p class="font-tactical text-[11px] tracking-widest text-slate-500 uppercase">Verificación IA</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="reglas" class="max-w-6xl mx-auto px-5 py-10 border-t border-line/70">
+    <h2 class="font-tactical font-700 text-hud tracking-[0.2em] text-sm uppercase mb-6">Protocolo de ingreso</h2>
+    <div class="grid sm:grid-cols-3 gap-4">
+      <div class="border border-line bg-panel/50 p-5 rounded-sm">
+        <p class="font-display text-flame text-xl mb-2">01</p>
+        <p class="font-tactical text-slate-300">Completa tus datos y el ID de tu cuenta de Free Fire.</p>
+      </div>
+      <div class="border border-line bg-panel/50 p-5 rounded-sm">
+        <p class="font-display text-flame text-xl mb-2">02</p>
+        <p class="font-tactical text-slate-300">Sube la captura de tu comprobante de pago (transferencia o Yape/Plin).</p>
+      </div>
+      <div class="border border-line bg-panel/50 p-5 rounded-sm">
+        <p class="font-display text-flame text-xl mb-2">03</p>
+        <p class="font-tactical text-slate-300">La IA escanea tu comprobante y confirma tu cupo en segundos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="inscripcion" class="max-w-3xl mx-auto px-5 py-14">
+    <div class="corner-frame border border-flame/40 bg-panel scanline relative overflow-hidden p-6 sm:p-10 rounded-sm">
+      <span></span>
+
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="font-display text-white text-xl sm:text-2xl uppercase">Ficha de enlistamiento</h2>
+        <span class="font-tactical text-[11px] text-slate-500 tracking-widest hidden sm:inline">FORM_ID: FF-2026</span>
+      </div>
+
+      <form id="form-inscripcion" class="space-y-5" novalidate>
+
+        <div>
+          <label for="nickname" class="font-tactical text-xs tracking-widest text-hud uppercase">Nickname / Nombre</label>
+          <input type="text" id="nickname" name="nickname" required
+            placeholder="Ej. ShadowReaper"
+            class="mt-1 w-full bg-void border border-line focus:border-hud text-slate-100 placeholder-slate-600 px-4 py-3 rounded-sm font-tactical text-base transition" />
+        </div>
+
+        <div>
+          <label for="ff_id" class="font-tactical text-xs tracking-widest text-hud uppercase">ID de Free Fire</label>
+          <input type="text" id="ff_id" name="ff_id" required inputmode="numeric"
+            placeholder="Ej. 123456789"
+            class="mt-1 w-full bg-void border border-line focus:border-hud text-slate-100 placeholder-slate-600 px-4 py-3 rounded-sm font-tactical text-base transition" />
+        </div>
+
+        <div>
+          <label for="whatsapp" class="font-tactical text-xs tracking-widest text-hud uppercase">WhatsApp (con código de país)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" required
+            placeholder="Ej. +51 987 654 321"
+            class="mt-1 w-full bg-void border border-line focus:border-hud text-slate-100 placeholder-slate-600 px-4 py-3 rounded-sm font-tactical text-base transition" />
+        </div>
+
+        <div>
+          <label for="comprobante" class="font-tactical text-xs tracking-widest text-hud uppercase">Comprobante de pago</label>
+
+          <label for="comprobante"
+            class="mt-1 group relative flex flex-col items-center justify-center gap-2 border border-dashed border-line hover:border-flame/60 bg-void/60 rounded-sm px-4 py-8 cursor-pointer transition">
+            <svg id="upload-icon" class="w-8 h-8 text-slate-500 group-hover:text-flame transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 16.5V4.5m0 0L7 9.5m5-5 5 5M4.5 16.5v2a2 2 0 002 2h11a2 2 0 002-2v-2" />
+            </svg>
+            <span class="font-tactical text-sm text-slate-400" id="file-label">Toca para subir tu captura (JPG / PNG)</span>
+            <input type="file" id="comprobante" name="comprobante" accept="image/*" required class="hidden" />
+          </label>
+          <img id="preview" class="mt-3 max-h-48 rounded-sm border border-line hidden" alt="Vista previa del comprobante" />
+        </div>
+
+        <button type="submit" id="submit-btn"
+          class="w-full font-tactical font-700 tracking-widest uppercase bg-flame hover:bg-flame2 disabled:opacity-50 disabled:cursor-not-allowed text-void px-6 py-4 rounded-sm shadow-flame transition text-sm">
+          Enviar inscripción
+        </button>
+
+        <div id="status-box" class="hidden border-l-2 pl-4 py-2 font-tactical text-sm"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="border-t border-line/70 py-8 text-center">
+    <p class="font-tactical text-xs text-slate-600 tracking-widest uppercase">© 2026 Alpha Squad — Torneos Free Fire</p>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
