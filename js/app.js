@@ -68,11 +68,11 @@ form.addEventListener('submit', async (e) => {
     setLoading(true, 'Registrando inscripción…');
     setStatus('Guardando tu inscripción…', 'info');
 
-    const { data: inserted, error: insertError } = await supabase
+    const participanteId = crypto.randomUUID();
+
+    const { error: insertError } = await supabase
       .from('participantes')
-      .insert({ nickname, ff_id, whatsapp, comprobante_url, estado: 'pendiente' })
-      .select()
-      .single();
+      .insert({ id: participanteId, nickname, ff_id, whatsapp, comprobante_url, estado: 'pendiente' });
 
     if (insertError) {
       if (insertError.code === '23505') {
@@ -87,11 +87,10 @@ form.addEventListener('submit', async (e) => {
     const verifyRes = await fetch('/.netlify/functions/verify-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        participante_id: inserted.id,
+     body: JSON.stringify({
+        participante_id: participanteId,
         comprobante_url,
       }),
-    });
 
     const verifyData = await verifyRes.json();
 
