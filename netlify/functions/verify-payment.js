@@ -58,21 +58,23 @@ Responde solo el JSON.
         Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-  model: GROQ_MODEL,
-  temperature: 0,
-  max_tokens: 300,
-  reasoning_effort: 'none',
-  response_format: { type: 'json_object' },
-  messages: [
-    {
-      role: 'user',
-      content: [
-        { type: 'text', text: prompt },
-        { type: 'image_url', image_url: { url: dataUri } },
-      ],
-    },
-  ],
-}),
+        model: GROQ_MODEL,
+        temperature: 0,
+        max_tokens: 300,
+        reasoning_effort: 'none',
+        response_format: { type: 'json_object' },
+        messages: [
+          {
+            role: 'user',
+            content: [
+              { type: 'text', text: prompt },
+              { type: 'image_url', image_url: { url: dataUri } },
+            ],
+          },
+        ],
+      }),
+    });
+
     if (!groqRes.ok) {
       const errText = await groqRes.text();
       throw new Error(`Groq API error: ${groqRes.status} ${errText}`);
