@@ -6,7 +6,17 @@
 <title>ALPHA SQUAD // Torneo Free Fire — Inscripción</title>
 <meta name="description" content="Inscripción oficial al torneo Free Fire. Registro, verificación de pago y confirmación automática." />
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  window.addEventListener('error', function (e) {
+    document.body.insertAdjacentHTML('afterbegin',
+      '<div style="background:red;color:white;padding:16px;font-size:16px;position:relative;z-index:9999;">ERROR JS: ' + e.message + ' — archivo: ' + e.filename + ' — línea: ' + e.lineno + '</div>');
+  });
+  window.addEventListener('unhandledrejection', function (e) {
+    document.body.insertAdjacentHTML('afterbegin',
+      '<div style="background:red;color:white;padding:16px;font-size:16px;position:relative;z-index:9999;">ERROR PROMESA: ' + (e.reason && e.reason.message ? e.reason.message : e.reason) + '</div>');
+  });
+</script>
+  <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
