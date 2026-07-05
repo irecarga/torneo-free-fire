@@ -87,10 +87,11 @@ form.addEventListener('submit', async (e) => {
     const verifyRes = await fetch('/.netlify/functions/verify-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({
+      body: JSON.stringify({
         participante_id: participanteId,
         comprobante_url,
       }),
+    });
 
     const verifyData = await verifyRes.json();
 
@@ -116,4 +117,4 @@ form.addEventListener('submit', async (e) => {
   } finally {
     setLoading(false);
   }
-})
+});
